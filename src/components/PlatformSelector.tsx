@@ -9,6 +9,9 @@ interface Props{
     selectedPlatform: Platform | null;
 }
 
+
+//Notes: Platform selector component is in the GridItem component. Pass the platform selected input to the Game Grid component via App component.
+
 const PlatformSelector = ({onSelectPlatform, selectedPlatform}: Props) => {
 
   const {data, error}= usePlatforms();
