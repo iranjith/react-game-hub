@@ -1,25 +1,23 @@
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import React, { useRef } from "react";
 import { BsSearch } from "react-icons/bs";
+import useGameQueryStore from "../store";
 
 /**Notes: 
 1. Search input component is in the NavBar component. Pass the search input to the Game Grid component to the Navbar component via App component.
 2. Because we have a simple form with single input field, its easier to use the ref hook instead of stake hook
 **/
 
-interface Props{
-    onSearch: (searchText:string)=>void;
-}
-
-
-const SearchInput = ({onSearch}:Props) => {
+const SearchInput = () => {
   const ref = useRef<HTMLInputElement>(null);
+
+  const setSearchText= useGameQueryStore(s=>s.setSearchText);
 
   return (
     <form 
       onSubmit={(event) => {
         event.preventDefault();
-        if(ref.current) onSearch(ref.current.value);  
+        if(ref.current) setSearchText(ref.current.value);  
       }}
     >
       <InputGroup>
