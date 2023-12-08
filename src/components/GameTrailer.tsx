@@ -8,7 +8,17 @@ interface Props {
 const GameTrailer = ({ gameId }: Props) => {
   const { data, error, isLoading } = useTrailers(gameId);
 
-  return <div>GameTrailer</div>;
+  if(isLoading) return null;
+
+//  if(error) return error;
+
+  const first=data!.results[0];
+
+  return first ? (
+    <video src={first!.data[480]} poster={first!.preview} controls />
+
+  ) : null;
+
 };
 
 export default GameTrailer;
